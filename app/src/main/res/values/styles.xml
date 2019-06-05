@@ -1,11 +1,31 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Base application theme, shared across all configurations. -->
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- Color for the app bar and other primary UI elements. -->
         <item name="colorPrimary">@color/colorPrimary</item>
+
+        <!-- A darker variant of the primary color, used for
+         the status bar and contextual app bars. -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <!-- A secondary color for controls like checkboxes and text fields. -->
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Default nav bar is either black or light gray, depends on the device.
+             When setting color explicitly, make sure that light icons are visible. -->
+        <!-- <item name="android:navigationBarColor">@color/color4</item> -->
+
+        <!-- Used to make status/navigation bar transparent. Overrides
+             color settings -->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     </style>
 
 </resources>

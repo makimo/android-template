@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="BaseAppTheme">
+
+        <!-- Specifies whether status bar icons are light or dark (so they are visible
+             in contrast to status bar color. false means icons are light. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+    </style>
+</resources>

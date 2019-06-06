@@ -1,4 +1,6 @@
-@file:Suppress("MayBeConstant", "SpellCheckingInspection")
+@file:Suppress("MayBeConstant", "SpellCheckingInspection",
+    "MemberVisibilityCanBePrivate"
+)
 
 /**
  * [Dependencies.kt] specifies three objects: [Config], [Version] and [Deps],
@@ -25,11 +27,11 @@ object Config {
      * app's runtime code.
      */
     val buildValues = listOf(
-        "String", "API_URL",      "some.api.com/",
-        "String", "API_PROTOCOL", "https",
-
-        "long", "HTTP_READ_TIMEOUT", "60",
-        "long", "HTTP_CONNECT_TIMEOUT", "60"
+        "String", "API_URL",              "some.api.com/",
+        "String", "API_PROTOCOL",         "https",
+        "long",   "HTTP_READ_TIMEOUT",    "60",
+        "long",   "HTTP_CONNECT_TIMEOUT", "60",
+        "String", "PACKAGE",              Versions.applicationId
     )
 
     /**
@@ -52,7 +54,8 @@ object Config {
      * literal maps would be too verbose.
      */
     val buildValuesIter = buildValues.chunked(3).map {
-        mapOf("type" to it[0], "name" to it[1], "value" to if (it[0] == "String") "\"${it[2]}\"" else it[2])
+        mapOf("type" to it[0], "name" to it[1],
+            "value" to if (it[0] == "String") "\"${it[2]}\"" else it[2])
     }
 }
 
@@ -80,6 +83,7 @@ object Versions {
      * This ID uniquely identifies your app on the device and in Google Play Store.
      */
     val applicationId = "pl.makimo.androidtemplate"
+    val packageName = applicationId
 
     // Android settings
 
@@ -151,6 +155,7 @@ object Deps {
 
     // Tests
     val junit            = "junit:junit:${Versions.junit}"
+    val androidXRules    = "androidx.test:rules:${Versions.testRunner}"
     val androidXRunner   = "androidx.test:runner:${Versions.testRunner}"
     val androidXEspresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     val mockWebServer    = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"

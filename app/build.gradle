@@ -66,9 +66,13 @@ dependencies {
 
     // Tests
     testImplementation        Deps.junit
+    testImplementation        'androidx.test.ext:junit:1.1.1'
+
     androidTestImplementation Deps.androidXRunner
     androidTestImplementation Deps.androidXEspresso
+    androidTestImplementation Deps.androidXRules
     androidTestImplementation Deps.mockWebServer
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
     // Retrofit
     implementation Deps.retrofit2

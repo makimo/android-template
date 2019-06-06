@@ -1,33 +1,91 @@
-apply plugin: 'com.android.application'
+// For details and config values, see buildSrc/java/Dependencies.kt.
 
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
+Config.plugins.each {
+    apply plugin: it
+}
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion compileSdkVersion
+
     defaultConfig {
-        applicationId "pl.makimo.androidtemplate"
-        minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        applicationId Versions.applicationId
+
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        compileSdkVersion Versions.compileSdk
+
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
+        testInstrumentationRunner Versions.testInstrumentationRunner
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            Config.buildValuesIter.each {
+                buildConfigField it.type, it.name, it.value
+            }
         }
+
+        debug {
+            Config.buildValuesIter.each {
+                buildConfigField it.type, it.name, it.value
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility Versions.jvmTarget
+        targetCompatibility Versions.jvmTarget
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = Versions.jvmTarget.toString()
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation Deps.kotlinStdLib
+
+    // AppCompat / AndroidX
+    implementation Deps.androidXCore
+    implementation Deps.androidXAppCompat
+    implementation Deps.constraintLayout
+
+    // Rx
+    implementation Deps.rxAndroid
+    implementation Deps.rxKotlin
+
+    // Tests
+    testImplementation        Deps.junit
+    androidTestImplementation Deps.androidXRunner
+    androidTestImplementation Deps.androidXEspresso
+    androidTestImplementation Deps.mockWebServer
+
+    // Retrofit
+    implementation Deps.retrofit2
+    implementation Deps.okhttp3Interceptor
+    implementation Deps.jackson
+    implementation Deps.jacksonAnnotations
+
+    // Dagger 2
+    implementation      Deps.dagger
+    implementation      Deps.daggerAndroidSupport
+    kapt                Deps.daggerCompiler
+    annotationProcessor Deps.daggerProcessor
+
+    // Room
+    implementation            Deps.lifecycleViewModel
+    kapt                      Deps.roomCompiler
+    implementation            Deps.roomRuntime
+    androidTestImplementation Deps.roomTesting
+    debugImplementation       Deps.roomDebug
 }

@@ -26,7 +26,10 @@ object Config {
      */
     val buildValues = listOf(
         "String", "API_URL",      "some.api.com/",
-        "String", "API_PROTOCOL", "https"
+        "String", "API_PROTOCOL", "https",
+
+        "long", "HTTP_READ_TIMEOUT", "60",
+        "long", "HTTP_CONNECT_TIMEOUT", "60"
     )
 
     /**
@@ -49,7 +52,7 @@ object Config {
      * literal maps would be too verbose.
      */
     val buildValuesIter = buildValues.chunked(3).map {
-        mapOf("type" to it[0], "name" to it[1], "value" to "\"${it[2]}\"")
+        mapOf("type" to it[0], "name" to it[1], "value" to if (it[0] == "String") "\"${it[2]}\"" else it[2])
     }
 }
 

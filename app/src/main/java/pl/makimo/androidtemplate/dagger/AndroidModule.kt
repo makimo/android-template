@@ -31,5 +31,5 @@ class AndroidModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideApi() = ApiService.get()
+    fun provideApi() = ApiService.get(application)
 }

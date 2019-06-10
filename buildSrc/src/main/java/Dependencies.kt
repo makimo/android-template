@@ -121,6 +121,7 @@ object Versions {
     // Jackson is used to (de)serialize JSON by Retrofit.
     val jackson            = "2.3.0"
     val jacksonAnnotations = "2.9.8"
+    val chuck              = "1.1.0"
 
     // Dagger
 
@@ -165,6 +166,7 @@ object Deps {
     val okhttp3Interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okttp3Interceptor}"
     val jackson            = "com.squareup.retrofit2:converter-jackson:${Versions.jackson}"
     val jacksonAnnotations = "com.fasterxml.jackson.core:jackson-annotations:${Versions.jacksonAnnotations}"
+    val chuckDebug         = "com.readystatesoftware.chuck:library:${Versions.chuck}"
 
     // Dagger 2
     val dagger               = "com.google.dagger:dagger:${Versions.dagger}"

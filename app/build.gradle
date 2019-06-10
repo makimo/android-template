@@ -75,10 +75,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
 
     // Retrofit
-    implementation Deps.retrofit2
-    implementation Deps.okhttp3Interceptor
-    implementation Deps.jackson
-    implementation Deps.jacksonAnnotations
+    implementation      Deps.retrofit2
+    implementation      Deps.okhttp3Interceptor
+    implementation      Deps.jackson
+    implementation      Deps.jacksonAnnotations
+    debugImplementation Deps.chuckDebug
 
     // Dagger 2
     implementation      Deps.dagger

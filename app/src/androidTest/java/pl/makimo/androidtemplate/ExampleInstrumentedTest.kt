@@ -1,5 +1,6 @@
 package pl.makimo.androidtemplate
 
+import android.content.Context
 import androidx.test.rule.ActivityTestRule
 
 import org.junit.Test
@@ -20,10 +21,14 @@ class BuildConfigTest {
     @JvmField
     val rule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
+    val appContext: Context by lazy {
+        InstrumentationRegistry.getInstrumentation().targetContext
+    }
+
     @Before
     fun apiServiceBuilds() {
         try {
-            ApiService.get()
+            ApiService.get(appContext)
             assert(true)
         } catch (e: Throwable) {
             assert(false)
@@ -33,7 +38,6 @@ class BuildConfigTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals(BuildConfig.PACKAGE, appContext.packageName)
     }
 }

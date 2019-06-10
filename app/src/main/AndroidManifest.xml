@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pl.makimo.androidtemplate">
+    xmlns:tools="http://schemas.android.com/tools" package="pl.makimo.androidtemplate">
 
     <!-- Permissions -->
 
@@ -13,7 +13,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
 
         <!-- Activities -->
 

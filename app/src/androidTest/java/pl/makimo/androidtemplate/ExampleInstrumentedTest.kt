@@ -1,12 +1,14 @@
 package pl.makimo.androidtemplate
 
-import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Rule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,10 +17,14 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+    @Rule
+    @JvmField
+    val rule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("pl.makimo.androidtemplate", appContext.packageName)
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals(BuildConfig.PACKAGE, appContext.packageName)
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import pl.makimo.androidtemplate.BuildConfig
+import pl.makimo.androidtemplate.retrofit.ApiService
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -27,4 +28,8 @@ class AndroidModule(private val application: Application) {
     @Provides
     @Named(BASE_URL)
     fun provideBaseUrlString() = "${BuildConfig.API_PROTOCOL}://${BuildConfig.API_URL}"
+
+    @Provides
+    @Singleton
+    fun provideApi() = ApiService.get()
 }

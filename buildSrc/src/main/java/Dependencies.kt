@@ -90,7 +90,7 @@ object Versions {
     val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     val jvmTarget = 1.8
 
-    val minSdk     = 23
+    val minSdk     = 21
     val targetSdk  = 28
     val compileSdk = 28
     val kotlin     = "1.3.30"

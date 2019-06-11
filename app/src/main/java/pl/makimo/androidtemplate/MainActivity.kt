@@ -1,6 +1,7 @@
 package pl.makimo.androidtemplate
 
 import android.os.Bundle
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -16,5 +17,7 @@ class MainActivity : BaseActivity() {
         //     '  )/>/   \|-,
         //        | `\    | "
         //        "   "   "
+
+        Timber.d("Ponycorn!")
     }
 }

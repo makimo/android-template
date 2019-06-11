@@ -1,6 +1,7 @@
 package pl.makimo.androidtemplate.dagger
 
 import android.app.Application
+import timber.log.Timber
 
 
 class App : Application() {
@@ -9,5 +10,9 @@ class App : Application() {
         DaggerAppComponent.builder()
             .androidModule(AndroidModule(this))
             .build()
+    }
+
+    init {
+        Timber.plant(Timber.DebugTree())
     }
 }

@@ -93,4 +93,7 @@ dependencies {
     implementation            Deps.roomRuntime
     androidTestImplementation Deps.roomTesting
     debugImplementation       Deps.roomDebug
+
+    // Logging
+    implementation Deps.timber
 }

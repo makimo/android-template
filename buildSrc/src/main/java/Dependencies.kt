@@ -106,9 +106,9 @@ object Versions {
 
     // Tests
 
-    val junit      = "4.12"
-    val testRunner = "1.1.1"
-    val espresso   = "3.1.1"
+    val junit         = "4.12"
+    val testRunner    = "1.1.1"
+    val espresso      = "3.1.1"
     // Alows to mock Retrofit responses.
     val mockWebServer = "3.12.0"
 
@@ -133,6 +133,9 @@ object Versions {
     // Allows to preview and modify database in the browser:
     // https://github.com/amitshekhariitbhu/Android-Debug-Database
     val roomDebug = "1.0.6"
+
+    // Logging
+    val timber = "4.7.1"
 }
 
 /**
@@ -160,6 +163,7 @@ object Deps {
     val androidXRunner   = "androidx.test:runner:${Versions.testRunner}"
     val androidXEspresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     val mockWebServer    = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
+    val roboelectric     = "org.robolectric:robolectric:${Versions.roboelectric}"
 
     // Retrofit
     val retrofit2          = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -180,4 +184,7 @@ object Deps {
     val roomRuntime        = "android.arch.persistence.room:runtime:${Versions.room}"
     val roomTesting        = "android.arch.persistence.room:testing:${Versions.room}"
     val roomDebug          = "com.amitshekhar.android:debug-db:${Versions.roomDebug}"
+
+    // Logging
+    val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }

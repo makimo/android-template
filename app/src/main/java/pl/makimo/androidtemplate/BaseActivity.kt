@@ -3,6 +3,7 @@ package pl.makimo.androidtemplate
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import pl.makimo.androidtemplate.dagger.App
+import timber.log.Timber
 
 /**
  * Basis for all [Activities]. All [Activities] must inherit from this one.

@@ -42,6 +42,12 @@ android {
         sourceCompatibility Versions.jvmTarget
         targetCompatibility Versions.jvmTarget
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -65,14 +71,15 @@ dependencies {
     implementation Deps.rxKotlin
 
     // Tests
-    testImplementation        Deps.junit
-    testImplementation        'androidx.test.ext:junit:1.1.1'
+    testImplementation Deps.junit
+    testImplementation Deps.androidXJUnit
+    testImplementation Deps.roboelectric
 
     androidTestImplementation Deps.androidXRunner
     androidTestImplementation Deps.androidXEspresso
     androidTestImplementation Deps.androidXRules
     androidTestImplementation Deps.mockWebServer
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation Deps.androidXJUnit
 
     // Retrofit
     implementation      Deps.retrofit2

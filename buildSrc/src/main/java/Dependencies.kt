@@ -111,6 +111,8 @@ object Versions {
     val espresso      = "3.1.1"
     // Alows to mock Retrofit responses.
     val mockWebServer = "3.12.0"
+    val roboelectric  = "4.3"
+    val androidXJUnit = "1.1.1"
 
     // Retrofit
 
@@ -164,6 +166,7 @@ object Deps {
     val androidXEspresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     val mockWebServer    = "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
     val roboelectric     = "org.robolectric:robolectric:${Versions.roboelectric}"
+    val androidXJUnit    = "androidx.test.ext:junit:${Versions.androidXJUnit}"
 
     // Retrofit
     val retrofit2          = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"

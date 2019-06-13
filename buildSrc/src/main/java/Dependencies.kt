@@ -31,6 +31,7 @@ object Config {
         "String", "API_PROTOCOL",         "https",
         "long",   "HTTP_READ_TIMEOUT",    "60",
         "long",   "HTTP_CONNECT_TIMEOUT", "60",
+        "String", "DBNAME",               "app_db",
         "String", "PACKAGE",              Versions.applicationId
     )
 

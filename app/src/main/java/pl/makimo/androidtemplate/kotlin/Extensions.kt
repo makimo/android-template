@@ -9,6 +9,7 @@ package pl.makimo.androidtemplate.kotlin
 
 import android.content.Context
 import android.content.Intent
+import android.preference.PreferenceManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -73,6 +74,9 @@ fun Context.toastLong(textRestId: Int) =
 
 fun <T: BaseActivity> Context.intent(klass: KClass<T>, fn: Intent.() -> Unit)
         = Intent(this, klass.java).apply { fn(this) }
+
+fun Context.getDefaultSharedPreferences() =
+    PreferenceManager.getDefaultSharedPreferences(this)
 
 //
 // Views

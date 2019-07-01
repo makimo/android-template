@@ -76,7 +76,7 @@ object Versions {
      * Human-readable, client version. Must adhere to
      * semantic versioning (https://semver.org/).
      */
-    val versionName = "1.0.0"
+    val versionName = "0.1.0"
 
     /**
      * Every Android app has a unique application ID that

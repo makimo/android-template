@@ -16,6 +16,7 @@ import android.view.View
 import android.widget.*
 import io.reactivex.Observable
 import android.view.ViewGroup
+import androidx.viewpager.widget.ViewPager
 import pl.makimo.androidtemplate.BaseActivity
 import kotlin.reflect.KClass
 
@@ -50,7 +51,7 @@ fun BaseActivity.start(intent: Intent) =
  *         putExtra(SOME_VAL, someVal)
  *     })
  */
-fun <T: BaseActivity> BaseActivity.start(klass: KClass<T>, fn: Intent.() -> Unit) =
+fun <T : BaseActivity> BaseActivity.start(klass: KClass<T>, fn: Intent.() -> Unit) =
     start(intent(klass) {
         fn(this)
     })
@@ -72,8 +73,8 @@ fun Context.toast(textRestId: Int) =
 fun Context.toastLong(textRestId: Int) =
     Toast.makeText(this, resources.getString(textRestId), Toast.LENGTH_LONG).show()
 
-fun <T: BaseActivity> Context.intent(klass: KClass<T>, fn: Intent.() -> Unit)
-        = Intent(this, klass.java).apply { fn(this) }
+fun <T : BaseActivity> Context.intent(klass: KClass<T>, fn: Intent.() -> Unit) =
+    Intent(this, klass.java).apply { fn(this) }
 
 fun Context.preferences() =
     PreferenceManager.getDefaultSharedPreferences(this)
@@ -95,13 +96,54 @@ fun <T> View.findViewsByTag(tag: String?): ArrayList<T> {
 
         if (child is ViewGroup) {
             views.addAll(child.findViewsByTag<T>(tag))
-        }
-        else if (child.tag != null && child.tag == tag) {
+        } else if (child.tag != null && child.tag == tag) {
             views.add(child as T)
         }
     }
 
     return views
+}
+
+//
+// ViewPager
+//
+
+fun ViewPager.setOnPageSelected(onPageSelectedFun: (Int) -> Unit) {
+    this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+        override fun onPageScrollStateChanged(state: Int) {}
+
+        override fun onPageScrolled(p: Int, p0: Float, p1: Int) {}
+
+        override fun onPageSelected(position: Int) {
+            onPageSelectedFun(position)
+        }
+    })
+}
+
+fun ViewPager.setOnPageChangedListener(
+    onPageScrollStateChangedFun: (Int) -> Unit,
+    onPageScrolledFun: (Int, Float, Int) -> Unit,
+    onPageSelectedFun: (Int) -> Unit
+) {
+    this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+        override fun onPageScrollStateChanged(state: Int) {
+            onPageScrollStateChangedFun(state)
+        }
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            onPageScrolledFun(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageSelected(position: Int) {
+            onPageSelectedFun(position)
+        }
+    })
 }
 
 //
@@ -142,9 +184,19 @@ fun EditText.text(block: Observable<String>.() -> Unit) {
 
             override fun afterTextChanged(s: Editable?) = Unit
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) = Unit
 
-            override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
                 s?.toString()?.let { emitter.onNext(it) }
             }
         }
@@ -164,9 +216,19 @@ fun EditText.onText(block: (String) -> Unit) {
 
         override fun afterTextChanged(s: Editable?) = Unit
 
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+        override fun beforeTextChanged(
+            s: CharSequence?,
+            start: Int,
+            count: Int,
+            after: Int
+        ) = Unit
 
-        override fun onTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        override fun onTextChanged(
+            s: CharSequence?,
+            start: Int,
+            count: Int,
+            after: Int
+        ) {
             s?.toString()?.let { block(it) }
         }
     }

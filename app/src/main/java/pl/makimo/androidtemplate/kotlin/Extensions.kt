@@ -75,7 +75,7 @@ fun Context.toastLong(textRestId: Int) =
 fun <T: BaseActivity> Context.intent(klass: KClass<T>, fn: Intent.() -> Unit)
         = Intent(this, klass.java).apply { fn(this) }
 
-fun Context.getDefaultSharedPreferences() =
+fun Context.preferences() =
     PreferenceManager.getDefaultSharedPreferences(this)
 
 //

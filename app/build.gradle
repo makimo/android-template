@@ -103,4 +103,8 @@ dependencies {
 
     // Logging
     implementation Deps.timber
+
+    // Navigation
+    implementation Deps.navigationFragment
+    implementation Deps.navigationUI
 }

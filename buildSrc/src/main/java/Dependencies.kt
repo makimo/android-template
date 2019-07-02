@@ -139,6 +139,9 @@ object Versions {
 
     // Logging
     val timber = "4.7.1"
+
+    //Navigation
+    val nav_version = "2.1.0-alpha05"
 }
 
 /**
@@ -191,4 +194,9 @@ object Deps {
 
     // Logging
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+
+    // Navigration
+    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    val navigationUI       = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation
+    android:id="@+id/nav_graph"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/destination_main">
 
 
@@ -12,14 +12,44 @@
         android:name="pl.makimo.androidtemplate.ui.MainFragment"
         tools:layout="@layout/fragment_main">
         <action
-            android:id="@+id/action_match_to_in_game"
+            android:id="@+id/action_main_to_help"
             app:destination="@id/destination_help"/>
+        <action
+            android:id="@+id/action_main_to_register"
+            app:destination="@id/destination_register"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
     </fragment>
 
     <fragment
         android:id="@+id/destination_help"
         android:name="pl.makimo.androidtemplate.ui.HelpFragment"
         android:label="fragment_help">
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_register"
+        android:name="pl.makimo.androidtemplate.ui.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_confirm"
+            app:destination="@id/destination_confirm"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/destination_confirm"
+        android:name="pl.makimo.androidtemplate.ui.ConfirmFragment"
+        android:label="fragment_confirm" tools:layout="@layout/fragment_confirm">
+        <action
+            android:id="@+id/action_confirm_to_main"
+            app:destination="@id/destination_main"
+            app:popUpTo="@+id/destination_main"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"/>
     </fragment>
 
 </navigation>
